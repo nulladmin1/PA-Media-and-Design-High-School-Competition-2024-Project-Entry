@@ -14,3 +14,11 @@ def main(page): #kinda ovious
     page.add(ft.Row([new_task, ft.ElevatedButton("Add", on_click=add_clicked)])) #button command
 
 ft.app(target=main)# setting as app
+
+
+
+#change a file:
+#   git add Funnies.py
+#   git commit -m "add change here"
+#   git push origin aklavya_new_features
+#   on github go to repo and click new pull request and yea
