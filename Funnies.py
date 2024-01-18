@@ -16,9 +16,3 @@ def main(page): #kinda ovious
 ft.app(target=main)# setting as app
 
 
-
-#change a file:
-#   git add Funnies.py
-#   git commit -m "add change here"
-#   git push origin aklavya_new_features
-#   on github go to repo and click new pull request and yea
