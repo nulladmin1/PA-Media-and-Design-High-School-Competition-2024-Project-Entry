@@ -3,3 +3,4 @@
 !.gitignore
 !Funnies.py
 !requirements.txt
+!shell.nix
