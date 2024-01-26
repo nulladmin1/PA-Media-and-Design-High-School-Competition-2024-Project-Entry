@@ -45,7 +45,7 @@ Recommender (undecided name) is a cross-platform app built using Kivy and Python
   - Add ```python3``` to environment.systemPackages = [];
   - Or install imperatively by ```nix-env -iA python3```
 
-### Using virtualenv (recommended to use virtual environments)
+#### Using virtualenv (recommended to use virtual environments)
 - Install virtualenv by:
   - Debian-/Ubuntu-based: ```sudo apt install python3-venv virtualenv python3-virtualenv```
   - Arch-based: ```sudo pacman -S python-virtualenv```
