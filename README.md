@@ -71,7 +71,7 @@ Recommender (undecided name) is a cross-platform app built using Kivy and Python
 - Install all required modules by executing ```pip -r requirements.txt```
 - Run the program by executing ```python Funnies.py```
 
-### Using Nix-shell (Only for NixOS)
+#### Using Nix-shell (Only for NixOS)
 - Clone this repo by executing ```git clone https://github.com/nulladmin1/PA-Media-and-Design-High-School-Competition-2024-Project-Entry.git```
 - Go into the clones repo by executing ```cd PA-Media-and-Design-High-School-Competition-2024-Project-Entry```
 - Run ```nix-shell```
