@@ -1,6 +1,6 @@
 # PA Media and Design High School Competition 2024 Project Entry
 
-Recommender (undecided name) is a cross-platform app built using Kivy and Python, giving recommendations to users that use it in a vast variety of topics.
+
 
 ## Installation:
 
