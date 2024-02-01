@@ -42,7 +42,7 @@
 - RHEL-/Fedora-based: ```sudo dnf install python3```
 - SUSE-/OpenSUSE-based: ```sudo zypper install python3```
 - NixOS (Note: there are separate instructions for installing on NixOS):
-  - Add ```python3``` to environment.systemPackages = [];
+  - Add ```python3``` to `environment.systemPackages = [];`
   - Or install imperatively by ```nix-env -iA python3```
 
 #### Using virtualenv (recommended to use virtual environments)
