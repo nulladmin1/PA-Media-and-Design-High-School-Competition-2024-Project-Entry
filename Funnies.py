@@ -1,17 +1,23 @@
-import kivy
-from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.image import Image
-from kivy.uix.label import Label
-from kivy.graphics.texture import Texture
+try:
+    import kivy
+except ImportError: # If Kivy isn't installed, it raises an ImportError that it's isn't installed and gives instructions how to install
+    raise ImportError('Kivy not installed. Please read the README.md to properly run the program. ')
+try:
+    from kivy.app import App
+    from kivy.uix.boxlayout import BoxLayout
+    from kivy.uix.button import Button
+    from kivy.uix.image import Image
+    from kivy.uix.label import Label
+    from kivy.graphics.texture import Texture
 
-import cv2
-import numpy as np
-from kivy.clock import Clock
-from deepface import DeepFace
-import threading
-import tempfile
+    import cv2
+    import numpy as np
+    from kivy.clock import Clock
+    from deepface import DeepFace
+    import threading
+    import tempfile
+except ImportError:
+    raise ImportError('Necessary modules not installed. Please read the READEME.md to properly run the program. ')
 
 class MoodDetectionApp(App):
     def build(self):
@@ -130,5 +136,5 @@ class MoodDetectionApp(App):
         self.cap.release()
         super().on_stop()
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # Checks if file is being run, if it is, then it runs the App, or if it's being used as a module, doesn't run
     MoodDetectionApp().run()
