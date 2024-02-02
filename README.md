@@ -23,7 +23,7 @@
 
 #### Using conda (recommended to use virtual environments)
 - Install [Python](python.org/downloads/windows/) if you haven't already
-- Install [Anaconda](anaconda.com/download) or [Miniconda](docs.conda.io/projects/conda/en/stable] if you haven't already
+- Install [Anaconda](anaconda.com/download) or [Miniconda](docs.conda.io/projects/conda/en/stable) if you haven't already
 - Clone this repo by executing ```git clone https://github.com/nulladmin1/PA-Media-and-Design-High-School-Competition-2024-Project-Entry.git```
 - Go into the clones repo by executing ```cd PA-Media-and-Design-High-School-Competition-2024-Project-Entry```
 - Create a new conda environment by executing ```conda create -n Recommender```
