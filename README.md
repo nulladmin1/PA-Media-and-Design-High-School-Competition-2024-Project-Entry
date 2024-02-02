@@ -1,6 +1,10 @@
 # PA Media and Design High School Competition 2024 Project Entry
 
-
+## Necessary Modules:
+- Kivy
+- OpenCV
+- NumPy
+- deepface
 
 ## Installation:
 
