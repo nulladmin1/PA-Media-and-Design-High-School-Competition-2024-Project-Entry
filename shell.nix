@@ -3,9 +3,10 @@
 let
   pythonPkgs = ps: with ps; [
     kivy
+    opencv4
     pandas
     requests
-    opencv4
+    tensorflowWithCuda
 
     # DeepFace
     (
