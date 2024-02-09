@@ -15,8 +15,7 @@
 - Install virtualenv using ```pip install virtualenv```
 - Clone this repo by executing ```git clone https://github.com/nulladmin1/PA-Media-and-Design-High-School-Competition-2024-Project-Entry.git```
 - Go into the clones repo by executing ```cd PA-Media-and-Design-High-School-Competition-2024-Project-Entry```
-- Get Python executable location by executing ```where python```
-- Create virtualenv environment by executing ```virtualenv --python <Python executable location> venv```, replacing `<Python executable location>` with the path outputted by running the previous command.
+- Create virtualenv environment by executing ```python -m virtualenv venv```
 - Activate virtualenv environment by executing ```.\venv\Scripts\activate```
 - Install all required modules by executing ```pip -r requirements.txt```
 - Run the program by executing ```python Funnies.py```
