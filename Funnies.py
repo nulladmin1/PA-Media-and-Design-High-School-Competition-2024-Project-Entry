@@ -1,24 +1,41 @@
-import kivy
-from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.app import App
+from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.image import Image
-from kivy.uix.label import Label
 from kivy.graphics.texture import Texture
-
-import cv2
-import numpy as np
 from kivy.clock import Clock
+from kivy.uix.popup import Popup
+from collections import deque
 from deepface import DeepFace
+import cv2
 import threading
 import tempfile
 
-class MoodDetectionApp(App):
-    def build(self):
+class MainMenuScreen(Screen):
+    def __init__(self, **kwargs):
+        super(MainMenuScreen, self).__init__(**kwargs)
+        self.layout = BoxLayout(orientation='vertical')
+
+        # Start button
+        self.start_button = Button(text='Start', size_hint=(1, None), height=50)
+        self.start_button.bind(on_press=self.start_camera)
+        self.layout.add_widget(self.start_button)
+
+        self.add_widget(self.layout)
+
+    def start_camera(self, instance):
+        # Switch to the MoodCaptureScreen
+        self.manager.current = 'mood_capture'
+
+class MoodCaptureScreen(Screen):
+    def __init__(self, **kwargs):
+        super(MoodCaptureScreen, self).__init__(**kwargs)
         self.layout = BoxLayout(orientation='vertical')
 
         # Button to capture mood
-        self.capture_button = Button(text="Capture Mood", on_press=self.capture_mood)
+        self.capture_button = Button(text="Capture Mood", on_press=self.capture_mood, size_hint=(1, None), height=50)
         self.layout.add_widget(self.capture_button)
 
         # Image widget for displaying the processed frame
@@ -26,7 +43,7 @@ class MoodDetectionApp(App):
         self.layout.add_widget(self.processed_image)
 
         # Label widget for displaying the detected emotion
-        self.emotion_label = Label(text='', font_size=20, markup=True)
+        self.emotion_label = Label(text='', font_size=20, markup=True, size_hint=(1, None), height=50)
         self.layout.add_widget(self.emotion_label)
 
         # Load pre-trained emotion detection model (DeepFace)
@@ -44,16 +61,16 @@ class MoodDetectionApp(App):
         # Clock to schedule face detection
         Clock.schedule_interval(self.detect_face, 1.0 / 30.0)  # Every 33 milliseconds (30 FPS)
 
-        return self.layout
+        self.add_widget(self.layout)
 
     def capture_mood(self, instance):
         if self.detected_emotion and not self.mood_captured:
             print(f"Detected Mood: {self.detected_emotion}")
             self.mood_captured = True
-        elif not self.detected_emotion:
-            print("No face detected. Please try again.")
-        elif self.mood_captured:
-            print("Mood already captured. Wait for the next face.")
+
+            # Switch to the TestScreen
+            self.manager.get_screen('test').update_mental_health_data(self.detected_emotion)
+            self.manager.current = 'test'
 
     def detect_face(self, dt):
         # Read frame from the camera
@@ -129,6 +146,40 @@ class MoodDetectionApp(App):
         # Release the camera when the app is stopped
         self.cap.release()
         super().on_stop()
+
+class TestScreen(Screen):
+    def __init__(self, **kwargs):
+        super(TestScreen, self).__init__(**kwargs)
+        self.layout = BoxLayout(orientation='vertical')
+
+        # Label to display mental health category
+        self.mental_health_label = Label(text='', font_size=20, markup=True, size_hint=(1, None), height=150)
+        self.layout.add_widget(self.mental_health_label)
+
+        # Label to display wait message
+        self.wait_label = Label(text='Please wait...', font_size=20, markup=True, size_hint=(1, None), height=150)
+
+        self.add_widget(self.layout)
+
+    def update_mental_health_data(self, detected_mental_health):
+        # Update mental health data on the TestScreen
+        self.mental_health_label.text = f"Detected Mental Health Category: [b]{detected_mental_health}[/b]"
+
+    def show_wait_message(self):
+        # Show the wait message
+        self.layout.clear_widgets()
+        self.layout.add_widget(self.wait_label)
+
+class MoodDetectionApp(App):
+    def build(self):
+        sm = ScreenManager()
+
+        # Add screens to the ScreenManager
+        sm.add_widget(MainMenuScreen(name='main_menu'))
+        sm.add_widget(MoodCaptureScreen(name='mood_capture'))
+        sm.add_widget(TestScreen(name='test'))
+
+        return sm
 
 if __name__ == '__main__':
     MoodDetectionApp().run()
