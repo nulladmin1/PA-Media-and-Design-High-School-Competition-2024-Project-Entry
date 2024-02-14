@@ -35,7 +35,7 @@ class MoodCaptureScreen(Screen):
         self.layout = BoxLayout(orientation='vertical')
 
         # Button to capture mood
-        self.capture_button = Button(text="Capture Mood", on_press=self.capture_mood, size_hint=(1, None), height=50)
+        self.capture_button = Button(text="Done", on_press=self.capture_mood, size_hint=(1, None), height=50)
         self.layout.add_widget(self.capture_button)
 
         # Image widget for displaying the processed frame
